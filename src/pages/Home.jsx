@@ -1,17 +1,26 @@
 import { FilePlus, FileText, LayoutDashboard, Zap } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [stats, setStats] = useState({ b: 0, c: 0, u: 0, r: 0 });
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setStats({ b: 12, c: 48, u: 6, r: 92 });
+    }, 300);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div>
-      {/* Hero Section */}
-      <div className="card" style={{ marginBottom: "30px" }}>
+      <div className="card">
         <h1 style={{ fontSize: "32px" }}>Welcome to ContractX</h1>
-        <p style={{ fontSize: "16px", color: "#6b7280", marginTop: "8px" }}>
-          Create, manage, and track contracts with ease using a modern workflow.
+        <p style={{ color: "#6b7280" }}>
+          Create, manage, and track contracts with ease.
         </p>
       </div>
 
-      {/* Stats Section */}
       <div
         style={{
           display: "grid",
@@ -20,28 +29,12 @@ export default function Home() {
           marginBottom: "30px"
         }}
       >
-        <div className="stat-card">
-          <h3>Blueprints</h3>
-          <p style={{ fontSize: "28px", fontWeight: "700" }}>12</p>
-        </div>
-
-        <div className="stat-card">
-          <h3>Contracts</h3>
-          <p style={{ fontSize: "28px", fontWeight: "700" }}>48</p>
-        </div>
-
-        <div className="stat-card">
-          <h3>Active Users</h3>
-          <p style={{ fontSize: "28px", fontWeight: "700" }}>6</p>
-        </div>
-
-        <div className="stat-card">
-          <h3>Completion Rate</h3>
-          <p style={{ fontSize: "28px", fontWeight: "700" }}>92%</p>
-        </div>
+        <div className="stat-card"><h3>Blueprints</h3><p>{stats.b}</p></div>
+        <div className="stat-card"><h3>Contracts</h3><p>{stats.c}</p></div>
+        <div className="stat-card"><h3>Users</h3><p>{stats.u}</p></div>
+        <div className="stat-card"><h3>Success</h3><p>{stats.r}%</p></div>
       </div>
 
-      {/* Feature Cards */}
       <div
         style={{
           display: "grid",
@@ -49,37 +42,10 @@ export default function Home() {
           gap: "20px"
         }}
       >
-        <div className="card">
-          <FilePlus size={28} color="#4f46e5" />
-          <h3>Create Blueprints</h3>
-          <p style={{ color: "#6b7280" }}>
-            Design reusable contract templates with custom fields.
-          </p>
-        </div>
-
-        <div className="card">
-          <FileText size={28} color="#4f46e5" />
-          <h3>Generate Contracts</h3>
-          <p style={{ color: "#6b7280" }}>
-            Quickly create contracts from your saved blueprints.
-          </p>
-        </div>
-
-        <div className="card">
-          <LayoutDashboard size={28} color="#4f46e5" />
-          <h3>Track Progress</h3>
-          <p style={{ color: "#6b7280" }}>
-            Monitor contract status and lifecycle in one dashboard.
-          </p>
-        </div>
-
-        <div className="card">
-          <Zap size={28} color="#4f46e5" />
-          <h3>Fast & Secure</h3>
-          <p style={{ color: "#6b7280" }}>
-            Built with modern tech for speed, security, and reliability.
-          </p>
-        </div>
+        <div className="card"><FilePlus /> <h3>Create Blueprints</h3></div>
+        <div className="card"><FileText /> <h3>Generate Contracts</h3></div>
+        <div className="card"><LayoutDashboard /> <h3>Track Progress</h3></div>
+        <div className="card"><Zap /> <h3>Fast & Secure</h3></div>
       </div>
     </div>
   );
