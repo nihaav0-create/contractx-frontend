@@ -18,5 +18,3 @@ No backend. Mock data only.
 
 ## Limitations
 No authentication, no PDF export.
-
-yes
